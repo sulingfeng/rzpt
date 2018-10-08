@@ -19,10 +19,7 @@ class UserController extends Controller {
 	/*用户登录*/
 	async login(){
 		var {ctx} = this;
-		var data = {
-			id:ctx.query.id,
-			pwd:ctx.query.pwd
-		}
+		var data = ctx.query || {}
 		var res = await this.service.user.login(data);
 		if(res.length != 0){
 			ctx.helper.success({ctx,res})
@@ -37,7 +34,7 @@ class UserController extends Controller {
 			nowPage:ctx.query.page
 		}
 		var res = await this.service.user.userPage(data);
-
+		console.log("控制层",res)
 		ctx.helper.success2({ctx,res})
 	}
 

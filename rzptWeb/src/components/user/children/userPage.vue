@@ -1,23 +1,10 @@
 <template>
   <div>
-    <el-table
-      :data="tableData"
-      border
-      style="width: 100%">
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        label="地址">
-      </el-table-column>
+    <el-table :data="tableData" border style="width: 100%">
+      <el-table-column prop="name" label="名字" width="180"></el-table-column>
+      <el-table-column prop="role" label="角色" width="180"></el-table-column>
+      <el-table-column prop="phone" label="电话"></el-table-column>
+      <el-table-column prop="createTime" label="创建时间"></el-table-column>
     </el-table>
     <div class="block">
       <el-pagination
@@ -37,35 +24,41 @@
 export default {
   data() {
     return {
-      currentPage1: 5,
-      currentPage2: 5,
-      currentPage3: 5,
-      currentPage4: 4,
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      currentPage:'',
+      tableData: []
     }
   },
+  mounted:function(){
+    this.userPage(1,1);
+  },
   methods: {
+    userPage(limit,page){
+      var limit = limit || 1;
+      var page = page || 1;
+      var param = {
+          limit:limit,
+          page:page
+      }
+
+      this.$axios.get('/api/user/page',{
+        params:param
+      }).then((res)=>{
+        if(res.data.code == 200){
+          this.tableData = res.data.data;
+          this.currentPage = 100//res.data.count;
+          console.log('分页数据',res.data.data)
+          console.log('分页数据',this.tableData)
+        }
+      }).catch((err)=>{
+        console.log(err)
+      })
+    },
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      console.log(`00000000每页 ${val} 条`);
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      console.log(`1111111当前页: ${val}`);
+      this.userPage(1,val)
     }
   }
 }

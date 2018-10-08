@@ -42,8 +42,9 @@ class UserService extends Service {
   		.skip(Number(data.nowPage))
   		.limit(Number(data.size))
   		.sort({ createdAt: -1 }).exec()
-  		
-        return result;
+      result.total = Math.ceil(await this.ctx.model.User.count()/data.size)
+  	  console.log("服务层",result)
+      return result;
   	}
 
 }

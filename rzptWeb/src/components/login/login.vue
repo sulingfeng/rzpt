@@ -18,14 +18,14 @@
           <li><p>用户名<span class="nameNull">(用户名不能为空)</span></p><el-input
             placeholder="请输入用户名"
             prefix-icon="el-icon-service"
-            v-model="input21">
+            v-model="loginName">
           </el-input>
         </li>
         <li><p>密&nbsp;&nbsp;&nbsp;&nbsp;码<span class="passwordNull">(密码不能为空)</span></p>
           <el-input
           placeholder="请输入密码"
           prefix-icon="el-icon-view"
-          v-model="input22">
+          v-model="loginPwd">
         </el-input>
       </li>
     </ul>
@@ -92,8 +92,8 @@ export default {
   data:function (){
     return {
       msg: 'Welcome to Your Vue.js App',
-      input21:'',
-      input22:'',
+      loginName:'',
+      loginPwd:'',
       savePwd:'',
       show: true,
       uid:'',
@@ -116,26 +116,32 @@ export default {
       this.$axios.get('/api/user/add',{
         　　params:param
       })
-      .then(function (response) {
-        　　console.log(1)
-        　　console.log(response);
-      })
-      .catch(function (error) {
-        　　console.log(error);
-      });
+      .then((res) => {
+        if(res.data.code == 200){
 
-
-      /*$.ajax({
-       type: "GET",
-       url: "/api/user/add",
-       data: param,
-       success: function(data){
-          console.log("返回数据",data)
         }
-      });*/
+      })
+      .catch((err) => {
+        　　console.log(err);
+      });
     },
     login(event){
-      this.$router.push("/main");
+      var param = {
+        name:this.loginName,
+        pwd:this.loginPwd
+      }
+      this.$axios.get('/api/user/login',{
+        　　params:param
+      })
+      .then((res) => {
+        if(res.data.code == 200){
+          this.$router.push("/main");
+        }
+      })
+      .catch((err) => {
+        　　console.log(err);
+      });
+      
     },
     register(){
       $(".loginWrapper").animate({right:"-30%"},300)
