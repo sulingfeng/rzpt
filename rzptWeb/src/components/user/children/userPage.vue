@@ -39,15 +39,15 @@ export default {
           limit:limit,
           page:page
       }
-
+      
       this.$axios.get('/api/user/page',{
         params:param
       }).then((res)=>{
         if(res.data.code == 200){
           this.tableData = res.data.data;
-          this.currentPage = 100//res.data.count;
-          console.log('分页数据',res.data.data)
-          console.log('分页数据',this.tableData)
+          this.currentPage = res.data.count;
+          var name = sessionstorage.getItem('name')
+          console.log('分页1数据',name)
         }
       }).catch((err)=>{
         console.log(err)

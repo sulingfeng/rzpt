@@ -28,7 +28,7 @@ class UserService extends Service {
   	}
   	//token,未做
   	var data = {
-            username:user[0].username,
+            name:user[0].name,
             role:user[0].role,
             token:'1',
             id:user[0]._id,
@@ -43,7 +43,6 @@ class UserService extends Service {
   		.limit(Number(data.size))
   		.sort({ createdAt: -1 }).exec()
       result.total = Math.ceil(await this.ctx.model.User.count()/data.size)
-  	  console.log("服务层",result)
       return result;
   	}
 

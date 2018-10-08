@@ -136,6 +136,11 @@ export default {
       .then((res) => {
         if(res.data.code == 200){
           this.$router.push("/main");
+          var user = res.data.data;
+          sessionstorage.setItem('name',user.name);
+          sessionstorage.setItem('role',user.role);
+          sessionstorage.setItem('userId',user.id);
+          sessionstorage.setItem('token',user.token);
         }
       })
       .catch((err) => {
@@ -202,7 +207,7 @@ export default {
 .center {
   border-radius: 8px;
   width: 305px;
-  height: 385px;
+  height: 316px;
   background: #fff;
   box-shadow: 0px 5px 5px #232848;
   position: fixed;
@@ -226,7 +231,7 @@ export default {
 .center ul li p {
   color: #747474;
   font-size: 15px;
-  margin: 12px 0;
+  margin: 9px 0;
 }
 .center button {
   width: 305px;
@@ -261,12 +266,13 @@ export default {
   margin-top: 17px;
 }
 .register {
-  height: 520px;
+  height: 480px;
   top: 20%;
 }
 .register .registerYes {
   width: 140px;
   margin-right: 20px;
+  margin-top:20px;
 }
 .center button {
   width: 305px;
