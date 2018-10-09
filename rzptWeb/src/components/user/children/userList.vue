@@ -6,39 +6,50 @@
           <h1>调用商管理</h1>
           <p><a href="">首页</a> <span>&nbsp;&nbsp;/&nbsp;&nbsp;</span> <a href="">调用商管理</a></p>
         </div>
-        <button type="success" class="addCaller">+ 新增调用商</button>
+        <button type="success" class="addCaller" @click="userAdd">+ 新增调用商</button>
         <hr class="headerHr">
       </div>
       <div class="centerBottom">
-        <ul class="searchWrapper floatLeft">
-          <li class="floatLeft"><span class="floatLeft">调用商名称:</span> <input placeholder="请输入内容" class="searchName" type="text"></li>
-          <!--<li><span>应用名称:</span> <input class="searchApp" type="text"/></li>-->
-          <button class="searchBut" id="searchBut">搜索</button>
-          <button class="resetBut" id="resetBut">重置</button>
-        </ul>
-        <div class="clearFloat"></div>
-        <v-userPage></v-userPage>
+        
+        <v-userPage v-show="userPageShow"></v-userPage>
+        <v-userAdd v-show="userAddShow" @refreshList="userAddCancel"></v-userAdd>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import VUserPage from './userPage.vue'
+import VUserPage from './userPage.vue'
+import VUserAdd from './userAdd.vue'
 export default {
   name: 'HelloWorld',
   components:{
-    VUserPage
+    VUserPage,
+    VUserAdd
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      userPageShow: true,
+      userAddShow: false,
+    }
+  },
+  mounted:function (){
+
+  },
+  methods:{
+    userAdd(){
+      this.userPageShow = false;
+      this.userAddShow  = true;
+    },
+    userAddCancel(){
+      console.log("0000")
+      this.userPageShow = true;
+      this.userAddShow  = false;
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .userHeader{height: 70px;padding: 20px;}
 .bodyContent{background: #fff;}
