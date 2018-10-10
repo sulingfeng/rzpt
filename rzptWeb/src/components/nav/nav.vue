@@ -1,53 +1,52 @@
 <template>
-  <div class="nav">
-    <ul>
-      <li class="indexRoute" v-for="item in links" @click="$goRoute(item.route)">
-        <i></i>
-        <span>{{item.text}}</span>
-      </li>
-    </ul>
-  </div>
+<el-row class="tac">
+  <el-col :span="12">
+    <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen"  @close="handleClose"  background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b">
+      <el-submenu index="1">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>导航一</span>
+        </template>
+        <el-menu-item-group>
+          <template slot="title">分组一</template>
+          <el-menu-item index="1-1">选项1</el-menu-item>
+          <el-menu-item index="1-2">选项2</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="分组2">
+          <el-menu-item index="1-3">选项3</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="1-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="1-4-1">选项1</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="2">
+        <i class="el-icon-menu"></i>
+        <span slot="title">导航二</span>
+      </el-menu-item>
+      <el-menu-item index="3" disabled>
+        <i class="el-icon-document"></i>
+        <span slot="title">导航三</span>
+      </el-menu-item>
+      <el-menu-item index="4">
+        <i class="el-icon-setting"></i>
+        <span slot="title">导航四</span>
+      </el-menu-item>
+    </el-menu>
+  </el-col>
+</el-row>
 </template>
-
 <script>
   export default {
-    name: 'v-nav',
-    data () {
-    return {
-      links: [
-        {
-          text: '系统首页',
-          route: '../../components/indexCenter/indexCenter'
-        },
-        {
-          text: '调用商管理',
-          route: '../../components/indexCenter/caller'
-        }
-      ]
+    methods: {
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }
     }
   }
-  }
 </script>
-
-<style>
-  .nav {
-    float: left;
-    width: 100%;
-    background: #343d4e;
-    color: #fff;
-    box-shadow: 5px 5px 5px #e2e1e3;
-  }
-  .nav>ul>li {
-    cursor: pointer;
-    height: 86px;
-    border-top: solid 1px #465164;
-    border-bottom: solid 1px #28313f;
-    text-align: center;
-    line-height: 86px;
-    padding-left: 24px;
-  }
-  .content {
-    padding: 25px;
-    background: #ecedf1;
-  }
-</style>

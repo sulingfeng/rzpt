@@ -63,6 +63,6 @@ export default {
 </script>
 
 <style scoped>
-  .userAddUl li i{float:left;}
-  .userAddUl li div{width:250px;}
+  .userAddUl li i{float:left;line-height:40px;width:100px;}
+  .userAddUl li div{width:250px;margin-bottom:30px;}
 </style>

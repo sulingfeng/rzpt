@@ -4,7 +4,7 @@
       <div>
         <el-row>
           <el-col :span="2">
-            <div class="nav">
+            <div class="nav" ref="nav">
               <ul>
                 <li class="indexRoute" v-for="item in links" @click="$goRoute(item.route)">
                   <i :class=item.selector></i>
@@ -12,6 +12,7 @@
                 </li>
               </ul>
             </div>
+            <!-- <v-nav></v-nav> -->
           </el-col>
           <el-col :span="22" class="bodyWrapper">
             <router-view></router-view>
@@ -72,9 +73,16 @@ export default {
       ]
     }
   },
+  mounted:function(){
+    this.navHeight()
+  },
   methods:{
-
+    navHeight(){
+      var height = document.documentElement.clientHeight - 58;
+      this.$refs.nav.style.height = height+"px";
+    }
   }
+
 }
 </script>
 
@@ -82,6 +90,7 @@ export default {
   .nav {
     float: left;
     width: 100%;
+    height:100%;
     background: #343d4e;
     color: #fff;
     box-shadow: 5px 5px 5px #e2e1e3;
@@ -100,7 +109,6 @@ export default {
     background: #ecedf1;
   }
   .bodyWrapper{
-    padding: 20px;
-    background: #ecedf1;
+    padding: 40px 50px 20px 50px;
   }
 </style>

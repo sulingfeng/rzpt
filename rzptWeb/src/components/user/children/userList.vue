@@ -7,7 +7,7 @@
           <p><a href="">首页</a> <span>&nbsp;&nbsp;/&nbsp;&nbsp;</span> <a href="">调用商管理</a></p>
         </div>
         <button type="success" class="addCaller" @click="userAdd">+ 新增调用商</button>
-        <hr class="headerHr">
+        <!-- <hr class="headerHr"> -->
       </div>
       <div class="centerBottom">
         
@@ -51,13 +51,11 @@ export default {
 </script>
 
 <style scoped>
-.userHeader{height: 70px;padding: 20px;}
+.userHeader{height: 70px;border-bottom:solid 1px #bbbaba;margin-bottom:50px;}
 .bodyContent{background: #fff;}
 .userHeader div h1{font-size: 20px;color: #454545;}
 .userHeader div p{font-size: 14px;color: #747474;}
 .addCaller {width: 107px;height: 28px;border: solid 1px #24b97d;background: #2bd08e;line-height: 28px;text-align: center;color: #fff;cursor: pointer;border-radius:3px;float:right;}
 .headerHr{border-bottom: solid 2px #e7e7e7;margin-top:50px;}
-.searchName{width: 225px;height: 35px;border: solid 1px #e7e7e7;border-radius: 10px;float: left;margin-right: 20px;}
-.searchBut{width: 65px;height: 38px;line-height: 35px;text-align: center;border-radius: 5px;cursor: pointer;background: #42baff;color: #fff;font-weight: bold;}
-.resetBut{width: 65px;height: 38px;line-height: 35px;text-align: center;border-radius: 5px;cursor: pointer;background: #42baff;color: #fff;font-weight: bold;}
+
 </style>
