@@ -6,7 +6,8 @@
           <h1>调用商管理</h1>
           <p><a href="">首页</a> <span>&nbsp;&nbsp;/&nbsp;&nbsp;</span> <a href="">调用商管理</a></p>
         </div>
-        <button type="success" class="addCaller" @click="userAdd">+ 新增调用商</button>
+        <button type="success" class="addCaller"  v-show="addCallerShow" @click="userAdd">+ 新增调用商</button>
+        <button type="success" class="userReturn" v-show="userReturnShow" @click="userAddCancel">+ 返回</button>
         <!-- <hr class="headerHr"> -->
       </div>
       <div class="centerBottom">
@@ -30,7 +31,9 @@ export default {
   data () {
     return {
       userPageShow: true,
+      addCallerShow: true,
       userAddShow: false,
+      userReturnShow: false,
     }
   },
   mounted:function (){
@@ -38,13 +41,17 @@ export default {
   },
   methods:{
     userAdd(){
-      this.userPageShow = false;
-      this.userAddShow  = true;
+      this.userPageShow =  false;
+      this.userAddShow  =  true;
+      this.addCallerShow=  false;
+      this.userReturnShow= true;
     },
     userAddCancel(){
       console.log("0000")
       this.userPageShow = true;
       this.userAddShow  = false;
+      this.addCallerShow=  true;
+      this.userReturnShow= false;
     }
   }
 }
@@ -56,6 +63,7 @@ export default {
 .userHeader div h1{font-size: 20px;color: #454545;}
 .userHeader div p{font-size: 14px;color: #747474;}
 .addCaller {width: 107px;height: 28px;border: solid 1px #24b97d;background: #2bd08e;line-height: 28px;text-align: center;color: #fff;cursor: pointer;border-radius:3px;float:right;}
+.userReturn{width: 60px;height: 28px;border: solid 1px #24b97d;background: #2bd08e;line-height: 28px;text-align: center;color: #fff;cursor: pointer;border-radius:3px;float:right;}
 .headerHr{border-bottom: solid 2px #e7e7e7;margin-top:50px;}
 
 </style>
